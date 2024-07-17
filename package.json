@@ -1,0 +1,28 @@
+{
+  "name": "visa-de-homework",
+  "version": "1.0.0",
+  "description": "Visa design engineer exercise",
+  "main": "index.js",
+  "scripts": {
+    "backend": "npm run dev -w backend",
+    "frontend": "npm run dev -w frontend",
+    "start": "concurrently \"npm run backend\" \"npm run frontend\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonathanelbom/visa-de-homework.git"
+  },
+  "author": "Jonathan Elbom",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jonathanelbom/visa-de-homework/issues"
+  },
+  "homepage": "https://github.com/jonathanelbom/visa-de-homework#readme",
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

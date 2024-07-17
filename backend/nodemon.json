@@ -1,0 +1,4 @@
+{
+  "exec": "ts-node --files app.ts",
+  "ext": ".ts,.js"
+}
