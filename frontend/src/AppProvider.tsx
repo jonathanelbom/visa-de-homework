@@ -1,5 +1,5 @@
 import React, {ReactNode} from "react";
-import { AppAction, AppDispatch, AppState } from "./types";
+import { AppAction, AppDispatch, AppState, Book } from "./types";
 
 export const ActionType = {
     INIT_BOOKS: 'INIT_BOOKS',
@@ -36,6 +36,20 @@ const appReducer = (state: Record<string, any>, action: ReducerAction) => { // e
                 ...state,
                 initialized: true,
                 books: value,
+            }
+        case ActionType.UPDATE_BOOK:
+            return {
+                ...state,
+                books: state.books.map((book:Book) => book.id === value.id ? value : book),
+                 statusMessage: `Updated ${value.title}`,
+                statusSnackbarShown: true,
+            }
+        case ActionType.ADD_BOOK:
+            return {
+                ...state,
+                books: [value, ...state.books],
+                statusMessage: `Added ${value.title}`,
+                statusSnackbarShown: true,
             }
         default: {
             return { ...state };

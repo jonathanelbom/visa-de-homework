@@ -6,7 +6,7 @@ type MinWidthBoxProps = {
     children: ReactNode;
     sx?: object;
 }
-export const MinWidthBox = ({children, sx = {}, component}: MinWidthBoxProps) => (
+export const MaxWidthBox = ({children, sx = {}, component}: MinWidthBoxProps) => (
      <Box
         {...(component && {component})}
         sx={{

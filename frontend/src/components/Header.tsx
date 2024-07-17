@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material"
 import { ReactNode } from "react";
-import { MinWidthBox } from "./MinWidthBox";
+import { MaxWidthBox } from "./MaxWidthBox";
 
 type HeaderProps = {
     title: string;
@@ -20,7 +20,7 @@ export const Header = ({title, action}: HeaderProps) => {
                 borderBlockEnd: '1px solid #a5a3a2',
             }}
         >
-            <MinWidthBox
+            <MaxWidthBox
                 sx={{
                     display: 'flex',
                     justifyContent: 'space-between',
@@ -30,7 +30,7 @@ export const Header = ({title, action}: HeaderProps) => {
             >
                 <Typography variant="h4" component="h1" >{title}</Typography>
                 {!!action && action}
-            </MinWidthBox>
+            </MaxWidthBox>
         </Box>
     )
 }

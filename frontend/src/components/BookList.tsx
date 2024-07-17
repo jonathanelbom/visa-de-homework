@@ -2,13 +2,13 @@ import { Box, Button, CardActions,  } from '@mui/material';
 import { useAppState } from '../AppProvider';
 import { Link } from 'react-router-dom';
 import { Book } from './Book';
-import { MinWidthBox } from './MinWidthBox';
+import { MaxWidthBox } from './MaxWidthBox';
 
 const BookList = () => {
   const {books} = useAppState();
   
   return (
-    <MinWidthBox
+    <MaxWidthBox
       component="section"
     >
       <Box
@@ -48,7 +48,7 @@ const BookList = () => {
           </Box>
         ))}
       </Box>
-    </MinWidthBox>
+    </MaxWidthBox>
   );
 };
 

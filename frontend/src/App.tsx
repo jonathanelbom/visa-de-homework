@@ -4,8 +4,10 @@
     } from "react-router-dom";
     import { Home } from "./routes/Home";
     import { useEffect } from "react";
-    import axios, { AxiosResponse } from "axios";
+    import axios from "axios";
     import { ActionType, useAppDispatch } from "./AppProvider";
+import { Add } from "./routes/Add";
+import { Edit } from "./routes/Edit";
 
 const router = createBrowserRouter([
     {
@@ -16,6 +18,14 @@ const router = createBrowserRouter([
         path: "*",
         element: <Home/>,
     },
+    {
+        path: "/books/add",
+        element: <Add/>,
+    },
+    {
+        path: "/books/:bookId",
+        element: <Edit />,
+    },
 ]);
 
 export const App = () => {
@@ -24,7 +34,7 @@ export const App = () => {
     useEffect(() => {
         const getBooks = async () => {
             try {
-                const response: AxiosResponse = await axios.get('/api/books');
+                const response = await axios.get('/api/books');
                  dispatch({
                     type: ActionType.INIT_BOOKS,
                     value: response.data
