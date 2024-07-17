@@ -5,6 +5,10 @@ export const ActionType = {
     INIT_BOOKS: 'INIT_BOOKS',
     UPDATE_BOOK: 'UPDATE_BOOK',
     ADD_BOOK: 'ADD_BOOK',
+    SET_BOOK_TO_DELETE: 'SET_BOOK_TO_DELETE',
+    SET_MODEL_OPEN: 'SET_MODEL_OPEN',
+    DELETE_BOOK: 'DELETE_BOOK',
+
 }
 
 const initialState: AppState = {
@@ -51,6 +55,25 @@ const appReducer = (state: Record<string, any>, action: ReducerAction) => { // e
                 statusMessage: `Added ${value.title}`,
                 statusSnackbarShown: true,
             }
+        case ActionType.SET_BOOK_TO_DELETE:
+            return {
+                ...state,
+                bookToDelete: value,
+                deleteModalOpen: true,
+            }
+        case ActionType.SET_MODEL_OPEN:
+            return {
+                ...state,
+                deleteModalOpen: value,
+            }
+        case ActionType.DELETE_BOOK:
+            return {
+                ...state,
+                deleteModalOpen: false,
+                books: state.books.filter((book: Book) => book.id !== value.id),
+                statusMessage: `Deleted ${value.title}`,
+                statusSnackbarShown: true,
+            }   
         default: {
             return { ...state };
         }

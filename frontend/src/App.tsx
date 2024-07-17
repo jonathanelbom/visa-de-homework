@@ -8,6 +8,7 @@
     import { ActionType, useAppDispatch } from "./AppProvider";
 import { Add } from "./routes/Add";
 import { Edit } from "./routes/Edit";
+import { DeleteDialog } from "./components/DeleteDialog";
 
 const router = createBrowserRouter([
     {
@@ -49,6 +50,7 @@ export const App = () => {
     return (
         <>
             <RouterProvider router={router} />
+            <DeleteDialog />
         </>
     );
 }

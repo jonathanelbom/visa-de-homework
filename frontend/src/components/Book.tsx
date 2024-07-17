@@ -18,7 +18,7 @@ const LineDisplay = ({label, icon, fontWeight} : LineDisplayProps) => (
 
 type BookProps = {
     book: BookType;
-    actions: ReactNode
+    actions?: ReactNode
 }
 
 export const Book = ({book, actions} : BookProps) => {

@@ -1,11 +1,12 @@
 import { Box, Button, CardActions,  } from '@mui/material';
-import { useAppState } from '../AppProvider';
+import { ActionType, useAppDispatch, useAppState } from '../AppProvider';
 import { Link } from 'react-router-dom';
 import { Book } from './Book';
 import { MaxWidthBox } from './MaxWidthBox';
 
 const BookList = () => {
   const {books} = useAppState();
+  const dispatch = useAppDispatch();
   
   return (
     <MaxWidthBox
@@ -30,17 +31,13 @@ const BookList = () => {
                 <CardActions sx={{flexGrow: 0, display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end'}}>
                   <Button component={Link} size="small"
                     to={`books/${book.id}`}
-                    sx={{
-                      position: 'static',
-                      '&::before': {
-                        content: '""',
-                        position: 'absolute',
-                        inset: 0,
-                      }
-                    }}
                   >Edit</Button>
                   <Button
                     size="small"
+                    onClick={() => dispatch({
+                      type: ActionType.SET_BOOK_TO_DELETE,
+                      value: book
+                    })}
                   >Delete</Button>
                 </CardActions>
               }
