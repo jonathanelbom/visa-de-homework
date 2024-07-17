@@ -10,6 +10,7 @@ export const ActionType = {
     DELETE_BOOK: 'DELETE_BOOK',
     SET_STATUS_MESSAGE: 'SET_STATUS_MESSAGE',
     SET_STATUS_SHOWN: 'SET_STATUS_SHOWN',
+    SET_SORT: 'SET_SORT',
 
 }
 
@@ -89,6 +90,11 @@ const appReducer = (state: Record<string, any>, action: ReducerAction) => { // e
                 statusSnackbarShown: value,
             }
         }   
+        case ActionType.SET_SORT:
+            return {
+                ...state,
+                sortedBy: value,
+            }
         default: {
             return { ...state };
         }

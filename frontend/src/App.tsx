@@ -1,11 +1,11 @@
-    import {
+import {
     createBrowserRouter,
     RouterProvider,
-    } from "react-router-dom";
-    import { Home } from "./routes/Home";
-    import { useEffect } from "react";
-    import axios from "axios";
-    import { ActionType, useAppDispatch } from "./AppProvider";
+} from "react-router-dom";
+import { Home } from "./routes/Home";
+import { useEffect } from "react";
+import axios from "axios";
+import { ActionType, useAppDispatch } from "./AppProvider";
 import { Add } from "./routes/Add";
 import { Edit } from "./routes/Edit";
 import { DeleteDialog } from "./components/DeleteDialog";

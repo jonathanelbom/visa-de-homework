@@ -3,10 +3,28 @@ import { ActionType, useAppDispatch, useAppState } from '../AppProvider';
 import { Link } from 'react-router-dom';
 import { Book } from './Book';
 import { MaxWidthBox } from './MaxWidthBox';
+import { Book as BookType} from '../types';
+import { useMemo } from 'react';
+
+type BookFields = 'title' | 'author' | 'genre' | 'published' | 'updated'
+type SortFunc = (a: BookType, b: BookType) => number;
+
+const ascending = (key: BookFields) => (a: BookType, b: BookType) => a[key].toLowerCase() > b[key].toLowerCase() ? 1 : -1;
+const descending = (key: BookFields) => (a: BookType, b: BookType) => a[key].toLowerCase() > b[key].toLowerCase() ? -1 : 1;
+
+const sortFuncMap: Record<string, (key: BookFields) => (a: BookType, b: BookType) => number > = {
+  'title': ascending,
+  'author': ascending,
+  'genre': ascending,
+  'published': ascending,
+  'updated': descending,
+}
 
 const BookList = () => {
-  const {books} = useAppState();
+  const {books, sortedBy} = useAppState();
   const dispatch = useAppDispatch();
+
+  const sortedBooks = useMemo(() => books.sort((sortFuncMap[sortedBy])(sortedBy as BookFields) as SortFunc), [sortedBy, books])
   
   return (
     <MaxWidthBox
@@ -23,7 +41,7 @@ const BookList = () => {
           gridTemplateColumns: 'repeat( auto-fit, minmax(220px, 1fr) )',
         }}
       >
-        {books.map((book) => (
+        {sortedBooks.map((book) => (
           <Box component='li' key={book.id} >
             <Book
               book={book}
