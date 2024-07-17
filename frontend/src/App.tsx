@@ -9,6 +9,7 @@
 import { Add } from "./routes/Add";
 import { Edit } from "./routes/Edit";
 import { DeleteDialog } from "./components/DeleteDialog";
+import { StatusSnackbar } from "./components/StatusSnackbar";
 
 const router = createBrowserRouter([
     {
@@ -51,6 +52,7 @@ export const App = () => {
         <>
             <RouterProvider router={router} />
             <DeleteDialog />
+            <StatusSnackbar />
         </>
     );
 }

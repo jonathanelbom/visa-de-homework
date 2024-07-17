@@ -8,6 +8,8 @@ export const ActionType = {
     SET_BOOK_TO_DELETE: 'SET_BOOK_TO_DELETE',
     SET_MODEL_OPEN: 'SET_MODEL_OPEN',
     DELETE_BOOK: 'DELETE_BOOK',
+    SET_STATUS_MESSAGE: 'SET_STATUS_MESSAGE',
+    SET_STATUS_SHOWN: 'SET_STATUS_SHOWN',
 
 }
 
@@ -45,7 +47,7 @@ const appReducer = (state: Record<string, any>, action: ReducerAction) => { // e
             return {
                 ...state,
                 books: state.books.map((book:Book) => book.id === value.id ? value : book),
-                 statusMessage: `Updated ${value.title}`,
+                statusMessage: `Updated ${value.title}`,
                 statusSnackbarShown: true,
             }
         case ActionType.ADD_BOOK:
@@ -73,7 +75,20 @@ const appReducer = (state: Record<string, any>, action: ReducerAction) => { // e
                 books: state.books.filter((book: Book) => book.id !== value.id),
                 statusMessage: `Deleted ${value.title}`,
                 statusSnackbarShown: true,
-            }   
+            }
+         case ActionType.SET_STATUS_MESSAGE: {
+            return {
+                ...state,
+                statusSnackbarShown: true,
+                statusMessage: value,
+            }
+        }
+        case ActionType.SET_STATUS_SHOWN: {
+            return {
+                ...state,
+                statusSnackbarShown: value,
+            }
+        }   
         default: {
             return { ...state };
         }
